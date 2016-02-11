@@ -1,6 +1,5 @@
-import java.awt.Point;
-import java.io.*;
-import java.util.*;
+import java.util.Locale;
+import java.util.Scanner;
 
 class Polygon {
 
@@ -32,6 +31,29 @@ class Polygon {
 		return Y / y.length;
 	}
 
+	public boolean isInArea(double X, double Y) {
+		double maxX = 0;
+		double maxY = 0;
+		double minX = 0;
+		double minY = 0;
+		for (int i = 0; i < this.x.length; i++) {
+			if (x[i] >= maxX) {
+				maxX = x[i];
+			}
+			if (y[i] >= maxY) {
+				maxY = y[i];
+			}
+			if (x[i] <= minX) {
+				maxX = x[i];
+			}
+			if (y[i] <= minY) {
+				minY = y[i];
+			}
+		}
+
+		return X >= minX && X <= maxX && Y >= minY && Y <= maxY;
+
+	}
 
 	/*
 	 * readParameters(): permet de lire avec scan les paramètres du polygone :
