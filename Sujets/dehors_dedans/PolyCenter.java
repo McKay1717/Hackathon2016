@@ -61,16 +61,13 @@ class Polygon {
 	 */
 	public void readParameters(Scanner scan) {
 
-		System.err.println("Donner le polygone de format : nbSommets x1 y1 x2 y2 ... xn yn");
+		this.nbVertices = scan.nextInt();
+		this.x = new double[this.nbVertices];
+		this.y = new double[this.nbVertices];
 
-		String[] split = scan.next().split(" ");
-
-		this.nbVertices = Integer.parseInt(split[0]);
-
-		for(int i = 0; i < this.nbVertices; i++)
-		{
-			this.x[i] = Double.parseDouble(split[i*2+1]);
-			this.y[i] = Double.parseDouble(split[i*2+2]);
+		for (int i = 0; i < this.nbVertices; i++) {
+			this.x[i] = scan.nextDouble();
+			this.y[i] = scan.nextDouble();
 		}
 
 	}
@@ -87,16 +84,17 @@ class PolyCenter {
 		int nbPoly = scan.nextInt();
 
 		for (int i = 0; i < nbPoly; i++) {
-
 			Polygon p = new Polygon();
+			System.out.println("Debug" + i);
 			p.readParameters(scan);
+			System.out.println("Debug" + i);
+			if (p.isInArea(p.BarycentreX(), p.BarycentreY())) {
+				System.out.println(p.nbVertices + " yes");
+			} else {
+				System.out.println(p.nbVertices + " no");
+			}
+			System.out.println("Debug" + i);
 
-			/*
-			 * A COMPLETER : (cf. sujet)
-			 * 
-			 * afficher sur la sortie standard le nombre de sommets puis yes ou
-			 * no selon que le centre du polygone est à l'intérieur ou non.
-			 */
 		}
 	}
 }
