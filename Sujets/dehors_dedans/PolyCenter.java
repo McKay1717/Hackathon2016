@@ -13,13 +13,31 @@ class Polygon {
 		// ???
 	}
 
+	public boolean pointInPolygon(double x, double y) {
+		int i, j = this.nbVertices - 1;
+		boolean oddNodes = false;
+
+		for (i = 0; i < this.nbVertices; i++) {
+			if (this.y[i] < y && this.y[j] >= y || this.y[j] < y
+					&& this.y[i] >= y) {
+				if (this.x[i] + (y - this.y[i]) / (this.y[j] - this.y[i])
+						* (this.x[j] - this.x[i]) < x) {
+					oddNodes = !oddNodes;
+				}
+			}
+			j = i;
+		}
+
+		return oddNodes;
+	}
+
 	public double BarycentreX() {
 		double X = 0;
 		for (int i = 0; i < x.length; i++) {
 			X += x[i];
 		}
 
-		return (double)X / (double)x.length;
+		return (double) X / (double) x.length;
 	}
 
 	public double BarycentreY() {
@@ -28,30 +46,12 @@ class Polygon {
 			Y += y[i];
 		}
 
-		return (double)Y / (double)y.length;
+		return (double) Y / (double) y.length;
 	}
 
 	public boolean isInArea(double X, double Y) {
-		double maxX = 0;
-		double maxY = 0;
-		double minX = 0;
-		double minY = 0;
-		for (int i = 0; i < this.x.length; i++) {
-			if (x[i] >= maxX) {
-				maxX = x[i];
-			}
-			if (y[i] >= maxY) {
-				maxY = y[i];
-			}
-			if (x[i] <= minX) {
-				maxX = x[i];
-			}
-			if (y[i] <= minY) {
-				minY = y[i];
-			}
-		}
 
-		return X >= minX && X <= maxX && Y >= minY && Y <= maxY;
+		return this.pointInPolygon(X, Y);
 
 	}
 
