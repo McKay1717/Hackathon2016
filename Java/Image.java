@@ -30,25 +30,33 @@ class Image {
 
 	public void printBoundingBox() {
 
-		int boxUp = 0, boxLeft = 0;
+		int boxUp = Integer.MAX_VALUE, boxLeft = Integer.MAX_VALUE;
 		int boxWidth = 0, boxHeight = 0;
+		int maxH = 0, maxW = 0;
 		for (int i = 0; i < this.height; i++) {
 			for (int j = 0; j < this.width; j++) {
+
 				if (this.pixels[i][j] != 0) {
-					if (boxUp == 0) {
+					if (boxUp > i) {
 						boxUp = i;
-						boxLeft = j - 1;
 					}
-					if (boxWidth < j) {
-						boxWidth = j - 1;
+					if (boxLeft > j) {
+						boxLeft = j;
 					}
-					if (boxHeight < i - 1) {
-						boxHeight = i;
+					if (maxW <= j) {
+						maxW = j;
+					}
+					if (maxH <= i) {
+						maxH = i;
 					}
 
 				}
 			}
 		}
+		// maxW = + boxWidth
+		//
+		boxWidth = maxW - boxLeft + 1;
+		boxHeight = maxH - boxUp + 1;
 		System.out.println(boxLeft + " " + boxUp + " " + boxWidth + " "
 				+ boxHeight);
 	}
