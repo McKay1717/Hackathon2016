@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.io.*;
 import java.util.*;
 
@@ -11,6 +12,17 @@ class Polygon {
     
     public Polygon() {
 	// ???
+    }
+    
+    public Point Barycentre(ArrayList<Point> list)
+    {
+    	   double X = 0, Y = 0;
+
+           for(Point knot : list) {
+               X += knot.getX();
+               Y += knot.getY();
+           }
+       return new Point((int)(X / list.size()), (int) (Y / list.size()));
     }
 
     /* readParameters():
