@@ -19,7 +19,7 @@ class Polygon {
 			X += x[i];
 		}
 
-		return X / x.length;
+		return (double)X / (double)x.length;
 	}
 
 	public double BarycentreY() {
@@ -28,7 +28,7 @@ class Polygon {
 			Y += y[i];
 		}
 
-		return Y / y.length;
+		return (double)Y / (double)y.length;
 	}
 
 	public boolean isInArea(double X, double Y) {
@@ -85,15 +85,12 @@ class PolyCenter {
 
 		for (int i = 0; i < nbPoly; i++) {
 			Polygon p = new Polygon();
-			System.out.println("Debug" + i);
 			p.readParameters(scan);
-			System.out.println("Debug" + i);
 			if (p.isInArea(p.BarycentreX(), p.BarycentreY())) {
 				System.out.println(p.nbVertices + " yes");
 			} else {
 				System.out.println(p.nbVertices + " no");
 			}
-			System.out.println("Debug" + i);
 
 		}
 	}
