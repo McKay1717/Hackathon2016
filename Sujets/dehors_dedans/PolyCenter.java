@@ -61,6 +61,18 @@ class Polygon {
 	 */
 	public void readParameters(Scanner scan) {
 
+		System.err.println("Donner le polygone de format : nbSommets x1 y1 x2 y2 ... xn yn");
+
+		String[] split = scan.next().split(" ");
+
+		this.nbVertices = Integer.parseInt(split[0]);
+
+		for(int i = 0; i < this.nbVertices; i++)
+		{
+			this.x[i] = Double.parseDouble(split[i*2+1]);
+			this.y[i] = Double.parseDouble(split[i*2+2]);
+		}
+
 	}
 
 	// autres méthodes ???
