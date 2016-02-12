@@ -1,0 +1,17 @@
+.robot
+{
+    width: 20px;
+    margin: 0;
+}
+
+.robotCase
+{
+    padding: 5px;
+}
+
+.legende
+{
+    display: inline;
+    padding: 0 20px;
+    margin: 0 5px;
+}
